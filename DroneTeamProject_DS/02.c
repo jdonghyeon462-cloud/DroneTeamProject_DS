@@ -15,11 +15,12 @@
 입력 파일: 01.txt
 
 출력 파일: 02.txt
+
 부가 설명:
 02.c 에서 04.txt를 건드는 이유는 로그 저장하려는 용도이다
 즉 순수 좌표 저장 용도이며 02.c를 실행시에 02.txt, 04.txt 두개가 만들어집니다
 다만 system("notepad.exe 02.txt"); 이기에 02.txt만 자동으로 열립니다
-	*/
+*/
 #include "cdh.h"
 
 // 공백 연결 리스트를 생성하는 연산
@@ -52,16 +53,26 @@ double getDist02(int x, int y)
 }
 
 // 연결 리스트를 순서대로 화면과 파일에 출력하는 연산
-void printList02(linkedList_h02* L, FILE* fp)
+void printList02(linkedList_h02* L)
+{
+	listNode02* p;
+	p = L->head;
+	fprintf(stdout, "%-6s %-6s %-6s\n", "Point", "X", "Y");
+	while (p != NULL)
+	{
+		fprintf(stdout, "%-6c %-6d %-6d %-10.2lf\n", p->name, p->x, p->y, getDist02(p->x, p->y));
+		p = p->link;
+	}
+}
+
+void printListFile02(linkedList_h02* L, FILE* fp)
 {
 	listNode02* p;
 	p = L->head;
 	fprintf(fp, "%-6s %-6s %-6s\n", "Point", "X", "Y");
-	fprintf(stdout, "%-6s %-6s %-6s\n", "Point", "X", "Y");
 	while (p != NULL)
 	{
 		fprintf(fp, "%-6c %-6d %-6d\n", p->name, p->x, p->y);
-		fprintf(stdout, "%-6c %-6d %-6d %-10.2lf\n", p->name, p->x, p->y, getDist02(p->x, p->y));
 		p = p->link;
 	}
 }
@@ -210,9 +221,10 @@ int run02() {
 	fclose(fp1); // 파일을 다 읽었으므로 파일 닫기
 	naming02(L);
 
-	printList02(L, fp2); // 파일과 화면에 리스트 출력
+	printList02(L); // 파일과 화면에 리스트 출력
+	printListFile02(L, fp2); // 파일과 화면에 리스트 출력
 	fprintf(fp3, "\n[데이터 추가 날짜] %s %s\n", __DATE__, __TIME__);
-	printList02(L, fp3); // 파일과 화면에 리스트 출력
+	printListFile02(L, fp3); // 파일과 화면에 리스트 출력
 
 	fclose(fp2); // 파일에 쓰고 나서 파일 닫기
 	fclose(fp3); // 파일에 쓰고 나서 파일 닫기
