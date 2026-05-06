@@ -23,7 +23,7 @@ typedef struct dronePosition
 // ==========
 // 02.c
 // ==========
-typedef struct ListNode02 // ³ëµå ±¸Á¶Ã¼
+typedef struct ListNode02 // ë…¸ë“œ êµ¬ì¡°ì²´
 {
 	char name;
 	int x;
@@ -31,7 +31,7 @@ typedef struct ListNode02 // ³ëµå ±¸Á¶Ã¼
 	struct ListNode02* link;
 } listNode02;
 
-typedef struct           // // head ³ëµå¸¦ ±¸Á¶Ã¼·Î Á¤ÀÇ
+typedef struct           // // head ë…¸ë“œë¥¼ êµ¬ì¡°ì²´ë¡œ ì •ì˜
 {
 	listNode02* head;
 } linkedList_h02;
@@ -39,7 +39,8 @@ typedef struct           // // head ³ëµå¸¦ ±¸Á¶Ã¼·Î Á¤ÀÇ
 linkedList_h02* createlinkedList_h02(void);
 void freelinkedList_h02(linkedList_h02* L);
 double getDist02(int x, int y);
-void printList02(linkedList_h02* L, FILE* fp);
+void printList02(linkedList_h02* L);
+void printListFile02(linkedList_h02* L, FILE* fp);
 void insertFirstNode02(linkedList_h02* L, int a, int b);
 void insertMiddleNode02(linkedList_h02* L, listNode02* pre, int a, int b);
 void insertLastNode02(linkedList_h02* L, int a, int b);
@@ -49,8 +50,8 @@ listNode02* searchPreNode02(linkedList_h02* L, listNode02* temp);
 // ==========
 // 03.c
 // ==========
-#define PointMAX 5	// ÁöÁ¡ °³¼ö
-#define TrashMAX 50	//ÇÊ¿ä ¾ø´Â ÁÙÀ» ÀúÀå ½ÃÅ³ ÈŞÁöÅë ¿ªÇÒ ¹è¿­ Å©±â
+#define PointMAX 5	// ì§€ì  ê°œìˆ˜
+#define TrashMAX 50	//í•„ìš” ì—†ëŠ” ì¤„ì„ ì €ì¥ ì‹œí‚¬ íœ´ì§€í†µ ì—­í•  ë°°ì—´ í¬ê¸°
 
 typedef struct ListNode03
 {
@@ -61,15 +62,15 @@ typedef struct ListNode03
 	struct ListNode03* link;
 } listNode03;
 
-// ¸®½ºÆ®ÀÇ ½ÃÀÛÀ» ³ªÅ¸³»´Â head ³ëµå¸¦ ±¸Á¶Ã¼·Î Á¤ÀÇ
+// ë¦¬ìŠ¤íŠ¸ì˜ ì‹œì‘ì„ ë‚˜íƒ€ë‚´ëŠ” head ë…¸ë“œë¥¼ êµ¬ì¡°ì²´ë¡œ ì •ì˜
 typedef struct
 {
 	listNode03* head;
 } linkedList_h03;
 
-typedef struct Distance	//ÁöÁ¡°£ °Å¸®¸¦ ±¸ÇÒ ¶§ »ç¿ëÇÒ ±¸Á¶Ã¼ ¹è¿­
+typedef struct Distance	//ì§€ì ê°„ ê±°ë¦¬ë¥¼ êµ¬í•  ë•Œ ì‚¬ìš©í•  êµ¬ì¡°ì²´ ë°°ì—´
 {
-	char pointname;	//ÁöÁ¡ ÀÌ¸§
+	char pointname;	//ì§€ì  ì´ë¦„
 	int x;
 	int y;
 } d;
